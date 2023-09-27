@@ -5,6 +5,7 @@ import { Text } from '@rneui/themed'
 import { Provider as StoreProvider } from 'react-redux';
 import { legacy_createStore as createStore } from 'redux';
 import reducers from './src/reducers';
+import { LibraryList } from './src/components';
 
 
 export default function App() {
@@ -13,8 +14,9 @@ export default function App() {
       <SafeAreaProvider>
         <SafeAreaView>
           <View style={styles.container}>
-            <Text h1>Tech Stack!</Text>
             <StatusBar style="auto"/>
+            <Text h1>Tech Stack!</Text>
+            <LibraryList/>
           </View>
         </SafeAreaView>
       </SafeAreaProvider>
@@ -24,7 +26,7 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
-    // flex: 1,
+    flex: 1,
     // backgroundColor: '#fff',
     // alignItems: 'center',
     // justifyContent: 'center',
