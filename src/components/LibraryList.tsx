@@ -1,5 +1,4 @@
-import { FlatList, View } from 'react-native';
-import { Text } from '@rneui/themed';
+import { FlatList } from 'react-native';
 import React from 'react';
 import { connect, MapStateToProps } from 'react-redux';
 import { RootState } from '../reducers';
@@ -15,15 +14,13 @@ type Props = LibraryListProps & StateProps;
 const _LibraryList: React.FC<Props> = ({ libraries }) => {
 
   return (
-    <View>
-      <FlatList
-        data={libraries}
-        keyExtractor={item => item.id.toString()}
-        renderItem={({ item }) => (
-          <ListItem item={item} />
-        )}
-      />
-    </View>
+    <FlatList
+      data={libraries}
+      keyExtractor={item => item.id.toString()}
+      renderItem={({ item }) => (
+        <ListItem item={item}/>
+      )}
+    />
   );
 };
 

@@ -7,9 +7,10 @@ type CardProps = {
   description: string;
   thumbnailUri?: string;
   imageUri?: string;
+  button?: { title: string; callback: () => void }
 }
 
-export const Card: React.FC<CardProps> = ({ title, description, thumbnailUri, imageUri }) => {
+export const Card: React.FC<CardProps> = ({ title, description, thumbnailUri, imageUri, button }) => {
 
   const source = useMemo(() => {
     return { uri: thumbnailUri }
@@ -37,13 +38,14 @@ export const Card: React.FC<CardProps> = ({ title, description, thumbnailUri, im
         </View>
       }
 
-      <View style={styles.buttonSection}>
-        <Button
-          title="Click Me!!!"
-          onClick={() => {
-            Linking.openURL('https://www.google.com');
-          }}/>
-      </View>
+      {button &&
+        <View style={styles.buttonSection}>
+          <Button
+            title={button.title}
+            onClick={button.callback}
+          />
+        </View>
+      }
     </View>
   );
 };

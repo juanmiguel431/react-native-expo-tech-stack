@@ -12,12 +12,10 @@ export default function App() {
   return (
     <StoreProvider store={createStore(reducers)}>
       <SafeAreaProvider>
-        <SafeAreaView>
-          <View style={styles.container}>
-            <StatusBar style="auto"/>
-            <Text h1>Tech Stack!</Text>
-            <LibraryList/>
-          </View>
+        <SafeAreaView style={styles.container}>
+          <StatusBar style="auto"/>
+          <Text h1>Tech Stack!</Text>
+          <LibraryList/>
         </SafeAreaView>
       </SafeAreaProvider>
     </StoreProvider>
