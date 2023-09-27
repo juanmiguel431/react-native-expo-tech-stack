@@ -1,5 +1,9 @@
 import React from 'react';
-import { TouchableWithoutFeedback, TouchableHighlight, TouchableOpacity, Touchable, View } from 'react-native';
+import {
+  TouchableWithoutFeedback,
+  View,
+  LayoutAnimation
+} from 'react-native';
 import { Card } from './common';
 import { selectLibrary } from '../actions';
 import { connect, MapStateToProps } from 'react-redux';
@@ -15,16 +19,19 @@ type Props = ListItemProps & StateProps & DispatchProps;
 const _ListItem: React.FC<Props> = ({ item, expanded, selectLibrary }) => {
 
   return (
-    <TouchableOpacity
+    <TouchableWithoutFeedback
       onPress={() => {
+        LayoutAnimation.spring();
         selectLibrary(item.id);
       }}
     >
-      <Card
-        title={item.title}
-        description={expanded ? item.description : undefined}
-      />
-    </TouchableOpacity>
+      <View>
+        <Card
+          title={item.title}
+          description={expanded ? item.description : undefined}
+        />
+      </View>
+    </TouchableWithoutFeedback>
   );
 };
 
