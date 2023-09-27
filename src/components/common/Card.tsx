@@ -64,7 +64,8 @@ const styles = StyleSheet.create({
     shadowColor: '#dc0808',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
-    shadowRadius: 2
+    shadowRadius: 2,
+    backgroundColor: '#fff'
   },
   header: {
     flexDirection: 'column',

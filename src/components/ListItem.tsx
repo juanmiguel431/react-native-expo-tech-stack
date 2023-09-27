@@ -12,26 +12,24 @@ type ListItemProps = {
 
 type Props = ListItemProps & StateProps & DispatchProps;
 
-const _ListItem: React.FC<Props> = ({ item, selected, selectLibrary }) => {
+const _ListItem: React.FC<Props> = ({ item, expanded, selectLibrary }) => {
 
   return (
-    <TouchableWithoutFeedback
+    <TouchableOpacity
       onPress={() => {
         selectLibrary(item.id);
       }}
     >
-      <View>
-        <Card
-          title={item.title}
-          description={selected ? item.description : undefined}
-        />
-      </View>
-    </TouchableWithoutFeedback>
+      <Card
+        title={item.title}
+        description={expanded ? item.description : undefined}
+      />
+    </TouchableOpacity>
   );
 };
 
 type StateProps = {
-  selected: boolean;
+  expanded: boolean;
 };
 
 type DispatchProps = {
@@ -39,7 +37,7 @@ type DispatchProps = {
 }
 
 const mapStateToProps: MapStateToProps<StateProps, ListItemProps, RootState> = (state, ownProps) => {
-  return { selected: ownProps.item.id === state.selected };
+  return { expanded: ownProps.item.id === state.selected };
 }
 
 export const ListItem = connect<StateProps, DispatchProps, ListItemProps, RootState>(mapStateToProps, { selectLibrary })(_ListItem);
