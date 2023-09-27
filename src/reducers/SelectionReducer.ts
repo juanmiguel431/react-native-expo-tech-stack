@@ -1,17 +1,17 @@
-import { Library } from '../models';
+import ActionType from '../actions/ActionType';
 
-type SelectionReducerState = {
-  selected: Library | null;
-}
-
-const initialState: SelectionReducerState = { selected: null };
+type SelectionReducerState = number | null;
 
 type SelectionReducerAction = {
-  type: string;
+  type: ActionType;
   payload: number;
 };
 
-export const SelectionReducer = (state: SelectionReducerState = initialState, action: SelectionReducerAction): SelectionReducerState  => {
-  console.log('JMPC2', action);
-  return state;
+export const SelectionReducer = (state: SelectionReducerState = null, action: SelectionReducerAction): SelectionReducerState  => {
+  switch (action.type) {
+    case ActionType.SelectLibrary:
+      return action.payload;
+    default:
+      return state;
+  }
 };

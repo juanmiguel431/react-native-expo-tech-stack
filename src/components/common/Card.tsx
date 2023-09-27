@@ -4,7 +4,7 @@ import { Button } from './Button';
 
 type CardProps = {
   title: string;
-  description: string;
+  description?: string;
   thumbnailUri?: string;
   imageUri?: string;
   button?: { title: string; callback: () => void }
@@ -28,7 +28,7 @@ export const Card: React.FC<CardProps> = ({ title, description, thumbnailUri, im
 
         <View style={styles.header}>
           <Text style={styles.headerText}>{title}</Text>
-          <Text>{description}</Text>
+          {description && <Text>{description}</Text>}
         </View>
       </View>
 

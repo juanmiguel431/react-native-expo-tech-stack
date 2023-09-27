@@ -1,8 +1,8 @@
 import React from 'react';
-import { TouchableWithoutFeedback } from 'react-native';
+import { TouchableWithoutFeedback, TouchableHighlight, TouchableOpacity, Touchable, View } from 'react-native';
 import { Card } from './common';
 import { selectLibrary } from '../actions';
-import { connect } from 'react-redux';
+import { connect, MapStateToProps } from 'react-redux';
 import { RootState } from '../reducers';
 import { Library } from '../models';
 
@@ -12,22 +12,34 @@ type ListItemProps = {
 
 type Props = ListItemProps & StateProps & DispatchProps;
 
-const _ListItem: React.FC<Props> = ({ item, selectLibrary }) => {
+const _ListItem: React.FC<Props> = ({ item, selected, selectLibrary }) => {
+
   return (
-    <Card
-      title={item.title}
-      description={item.description}
-      button={{
-        title: 'Select',
-        callback: () => selectLibrary(item.id)
+    <TouchableWithoutFeedback
+      onPress={() => {
+        selectLibrary(item.id);
       }}
-    />
+    >
+      <View>
+        <Card
+          title={item.title}
+          description={selected ? item.description : undefined}
+        />
+      </View>
+    </TouchableWithoutFeedback>
   );
 };
 
-type StateProps = {};
+type StateProps = {
+  selected: boolean;
+};
+
 type DispatchProps = {
   selectLibrary: typeof selectLibrary
 }
 
-export const ListItem = connect<StateProps, DispatchProps, ListItemProps, RootState>(null, { selectLibrary })(_ListItem);
+const mapStateToProps: MapStateToProps<StateProps, ListItemProps, RootState> = (state, ownProps) => {
+  return { selected: ownProps.item.id === state.selected };
+}
+
+export const ListItem = connect<StateProps, DispatchProps, ListItemProps, RootState>(mapStateToProps, { selectLibrary })(_ListItem);

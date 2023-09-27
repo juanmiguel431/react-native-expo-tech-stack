@@ -1,7 +1,8 @@
+import ActionType from './ActionType';
 
 export const selectLibrary = (id: number) => {
   return {
-    type: 'select_library',
+    type: ActionType.SelectLibrary,
     payload: id
   };
 };

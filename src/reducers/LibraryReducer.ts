@@ -1,11 +1,11 @@
 import data from './LibraryList.json'
 import { Library } from '../models';
+import ActionType from '../actions/ActionType';
 
 type LibraryReducerAction = {
-  type: string;
+  type: ActionType;
 }
 
 export const LibraryReducer = (state: Library[] = [], action: LibraryReducerAction): Library[] => {
-  console.log('JMPC1', action);
   return data;
 };
